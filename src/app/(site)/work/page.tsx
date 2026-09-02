@@ -35,8 +35,7 @@ export default function WorkPage() {
               src={work.imageSrc}
               width={work.width}
               height={work.height}
-              label={String(index + 1).padStart(2, "0")}
-              caption={`${String(index + 1).padStart(2, "0")} / ${work.category}`}
+              caption={`${String(index + 1).padStart(2, "0")} / ${work.category}${work.status !== "unknown" ? ` / ${work.status}` : ""}`}
             />
           </article>
         ))}

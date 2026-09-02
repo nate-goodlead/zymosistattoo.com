@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type ImageFrameProps = {
   alt: string;
   src?: string | null;
@@ -5,6 +7,8 @@ type ImageFrameProps = {
   height: number;
   label?: string;
   caption?: string;
+  priority?: boolean;
+  sizes?: string;
 };
 
 export function ImageFrame({
@@ -14,6 +18,8 @@ export function ImageFrame({
   height,
   label,
   caption,
+  priority = false,
+  sizes = "(min-width: 1024px) 50vw, 100vw",
 }: ImageFrameProps) {
   return (
     <figure className="m-0">
@@ -22,9 +28,14 @@ export function ImageFrame({
         style={{ aspectRatio: `${width} / ${height}` }}
       >
         {src ? (
-          // Phase 1: original artist files are not in the repo yet.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={src} alt={alt} width={width * 100} height={height * 100} />
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            className="object-cover"
+          />
         ) : (
           <div className="image-frame-placeholder" role="img" aria-label={alt}>
             <span>{label ?? "Artwork"}</span>

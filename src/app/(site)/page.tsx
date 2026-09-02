@@ -5,8 +5,8 @@ import { EditorialLabel } from "@/components/ui/EditorialLabel";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { TextLink } from "@/components/ui/TextLink";
 import { previewAvailableDesigns } from "@/content/available";
-import { processSteps, site } from "@/content/site";
-import { featuredWorks } from "@/content/works";
+import { processSteps, site, studioImages } from "@/content/site";
+import { featuredWorks, workBySlug } from "@/content/works";
 import { formatHandle } from "@/lib/site";
 
 const featuredSpans = [
@@ -17,6 +17,8 @@ const featuredSpans = [
   "col-span-12 md:col-span-5",
   "col-span-12 md:col-start-7 md:col-span-6",
 ];
+
+const heroWork = workBySlug("swallow-shoulder");
 
 export default function HomePage() {
   const works = featuredWorks(6);
@@ -39,12 +41,16 @@ export default function HomePage() {
           <div className="col-span-12 flex flex-col justify-end gap-8 lg:col-span-4 lg:items-end">
             <TextLink href="/book">Start a project</TextLink>
             <div className="w-full max-w-sm lg:max-w-none">
-              <ImageFrame
-                alt="TODO_CONTENT — hero portrait or tattoo crop required"
-                width={4}
-                height={5}
-                label="Hero"
-              />
+              {heroWork ? (
+                <ImageFrame
+                  alt={heroWork.imageAlt}
+                  src={heroWork.imageSrc}
+                  width={heroWork.width}
+                  height={heroWork.height}
+                  priority
+                  sizes="(min-width: 1024px) 33vw, 90vw"
+                />
+              ) : null}
             </div>
           </div>
         </EditorialGrid>
@@ -78,7 +84,6 @@ export default function HomePage() {
                 src={work.imageSrc}
                 width={work.width}
                 height={work.height}
-                label={String(index + 1).padStart(2, "0")}
                 caption={`${String(index + 1).padStart(2, "0")} / ${work.category}${work.status !== "unknown" ? ` / ${work.status}` : ""}`}
               />
             </article>
@@ -130,6 +135,15 @@ export default function HomePage() {
               ) : null}
             </article>
           ))}
+          <div className="col-span-12 md:col-span-7 md:col-start-6">
+            <ImageFrame
+              alt={studioImages.machine.alt}
+              src={studioImages.machine.src}
+              width={studioImages.machine.width}
+              height={studioImages.machine.height}
+              sizes="(min-width: 768px) 55vw, 100vw"
+            />
+          </div>
         </EditorialGrid>
       </Section>
 
@@ -137,10 +151,11 @@ export default function HomePage() {
         <EditorialGrid>
           <div className="col-span-12 md:col-span-5">
             <ImageFrame
-              alt="TODO_CONTENT — artist portrait required"
-              width={4}
-              height={5}
-              label="Artist"
+              alt={studioImages.session.alt}
+              src={studioImages.session.src}
+              width={studioImages.session.width}
+              height={studioImages.session.height}
+              sizes="(min-width: 768px) 40vw, 100vw"
             />
           </div>
           <div className="col-span-12 flex flex-col justify-end md:col-span-6 md:col-start-7">

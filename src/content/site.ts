@@ -47,3 +47,18 @@ export const navItems = [
   { href: "/about", label: "About", index: "03" },
   { href: "/book", label: "Book", index: "04" },
 ] as const;
+
+export const studioImages = {
+  session: {
+    src: "/studio/session.png",
+    alt: "Lisa tattooing a client’s shoulder in a dim studio, lit by a work lamp.",
+    width: 768,
+    height: 1024,
+  },
+  machine: {
+    src: "/studio/machine.png",
+    alt: "Close-up of gloved hands tattooing dark linear work on a forearm.",
+    width: 880,
+    height: 1024,
+  },
+} as const;

@@ -5,7 +5,7 @@ import { DisplayHeading } from "@/components/ui/DisplayHeading";
 import { EditorialLabel } from "@/components/ui/EditorialLabel";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { TextLink } from "@/components/ui/TextLink";
-import { processSteps, site } from "@/content/site";
+import { processSteps, site, studioImages } from "@/content/site";
 import { formatHandle } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -27,10 +27,11 @@ export default function AboutPage() {
         </div>
         <div className="col-span-12 md:col-span-5">
           <ImageFrame
-            alt="TODO_CONTENT — artist portrait required"
-            width={4}
-            height={5}
-            label="Portrait"
+            alt={studioImages.session.alt}
+            src={studioImages.session.src}
+            width={studioImages.session.width}
+            height={studioImages.session.height}
+            sizes="(min-width: 768px) 40vw, 100vw"
           />
         </div>
         <div className="col-span-12 md:col-span-6 md:col-start-7">
@@ -60,6 +61,15 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
+        </div>
+        <div className="col-span-12 md:col-span-5">
+          <ImageFrame
+            alt={studioImages.machine.alt}
+            src={studioImages.machine.src}
+            width={studioImages.machine.width}
+            height={studioImages.machine.height}
+            sizes="(min-width: 768px) 40vw, 100vw"
+          />
         </div>
         <div className="col-span-12 mt-8">
           <TextLink href="/book">Start a project</TextLink>

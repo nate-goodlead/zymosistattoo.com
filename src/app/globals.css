@@ -262,6 +262,10 @@ img {
   width: 100%;
 }
 
+.image-frame img {
+  object-fit: cover;
+}
+
 .surface-paper .image-frame {
   background: color-mix(in srgb, var(--ink) 8%, transparent);
 }
