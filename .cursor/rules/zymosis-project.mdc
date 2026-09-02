@@ -1,0 +1,134 @@
+---
+description: "Zymosis Tattoo project-wide architecture, design, quality and agent workflow rules"
+alwaysApply: true
+---
+
+# Zymosis Tattoo — Project Rule
+
+## Source of truth
+- Read `docs/ZYMOSIS_PRODUCT_REQUIREMENTS.md` before major product/design work.
+- Use `docs/ZYMOSIS_MASTER_BUILD_PROMPT.md` as the build brief.
+- Update `docs/IMPLEMENTATION_STATUS.md` as substantial phases are completed.
+- Never invent final artist biography, location, pricing, credentials, policies, or testimonials. Use explicit TODO placeholders.
+
+## Product
+- This is an artist portfolio + qualified tattoo inquiry funnel.
+- Primary traffic is expected from Instagram/ManyChat.
+- Preserve UTM/ref/ManyChat attribution into inquiry submission.
+- Do not expand scope into scheduling, payments, portal or large admin unless requested.
+
+## Art direction
+- Target: 70% gallery/editorial, 20% sketchbook/pencil, 10% restrained graffiti.
+- Artwork must dominate UI.
+- Use negative space, extreme typography scale, editorial asymmetry, image-led composition.
+- Avoid generic SaaS cards, pill-button overload, glassmorphism, gradients, neon, gold-luxury clichés, tattoo-shop skull/flame/grunge clichés.
+- Pencil/graffiti details are accents only.
+- Do not clone Oscar Akermo's exact layout, wording, code, typography treatment or assets.
+
+## Typography
+- Prototype with a legal/free neo-grotesk such as Inter Tight/Geist and Instrument Serif.
+- Use `next/font` where appropriate.
+- Never add unlicensed commercial font files.
+- Large display headings: tight line-height, intentional wrapping.
+- Micro labels: small but accessible and sufficiently contrasted.
+
+## Stack
+- Next.js App Router + TypeScript.
+- Tailwind CSS 4.x plus custom CSS/design tokens as needed.
+- GSAP/ScrollTrigger for complex timelines and scroll-linked motion.
+- Lenis for restrained smooth scroll.
+- Motion for React for component state/presence/gestures.
+- React Hook Form + Zod for forms.
+- Supabase for persistence/private upload storage when configured.
+- Resend for transactional email when configured.
+- Prefer Server Components by default.
+- Scope Client Components narrowly.
+- Do not add redundant libraries for capabilities already covered.
+
+## Code quality
+- TypeScript strictness: do not introduce `any` to avoid modeling data.
+- Favor clear typed interfaces and discriminated unions.
+- Keep business logic out of presentational components.
+- Keep API/server input validation independent of client validation.
+- Avoid premature abstraction.
+- Delete dead code.
+- Do not leave console debugging in production paths.
+- Never commit secrets.
+- Maintain `.env.example` when env requirements change.
+
+## Motion
+- Motion must reveal hierarchy, not decorate every object.
+- Prefer transforms/opacity for smoothness.
+- Centralize common easing/duration tokens.
+- Clean up GSAP timelines and ScrollTriggers.
+- Avoid multiple overlapping RAF loops.
+- Parallax should usually stay within ±3–6%.
+- Do not introduce scroll hijacking.
+- Implement `prefers-reduced-motion`.
+- Disable pointer-only effects on coarse/touch devices.
+- Keep page transitions short enough that navigation feels responsive.
+
+## Images
+- Use supplied Zymosis assets or clearly labeled placeholders.
+- Never reuse competitor artwork/images in production.
+- Reserve aspect ratios to prevent CLS.
+- Use responsive optimized images.
+- Lazy load below the fold.
+- Do not preload an entire gallery.
+
+## Forms
+- Use progressive multi-step booking UX.
+- Preserve state between steps.
+- Validate client and server.
+- Use accessible labels/errors.
+- Rate-limit public submission.
+- Validate upload MIME/type/size server-side.
+- Store body/reference images privately.
+- Public clients must never be able to enumerate inquiries.
+- Do not send sensitive form content to analytics.
+
+## Accessibility
+- Target WCAG 2.2 AA.
+- All controls keyboard accessible.
+- Visible focus.
+- Menu/modal focus trap + Escape.
+- No essential hover-only information.
+- Respect reduced motion.
+- Maintain usable contrast.
+- Preserve browser zoom.
+
+## Performance
+- Hero LCP and mobile smoothness are priorities.
+- Prefer Server Components and minimal client JS.
+- Dynamically load noncritical interactive code when useful.
+- Do not sacrifice Core Web Vitals for decorative motion.
+- Avoid layout reads/writes inside hot scroll loops unless optimized.
+
+## Workflow
+Before major implementation:
+1. inspect current repository;
+2. read relevant docs;
+3. state a concise plan;
+4. implement the smallest coherent phase;
+5. run format/lint/typecheck/build as available;
+6. fix regressions introduced by the change;
+7. update implementation status.
+
+Do not perform massive unrelated refactors during a feature task.
+
+## Completion checks
+For meaningful frontend changes:
+- test mobile + desktop composition;
+- test keyboard;
+- test reduced motion;
+- check console;
+- check overflow;
+- run lint/typecheck/build.
+
+For backend/form changes:
+- test success;
+- validation failure;
+- upload failure;
+- provider failure;
+- duplicate/rate-limit behavior;
+- verify secrets stay server-side.
