@@ -4,7 +4,7 @@ import { DisplayHeading } from "@/components/ui/DisplayHeading";
 import { EditorialLabel } from "@/components/ui/EditorialLabel";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { TextLink } from "@/components/ui/TextLink";
-import { InquiryForm } from "@/components/booking/InquiryForm";
+import { InquirySection } from "@/components/booking/InquirySection";
 import { previewAvailableDesigns } from "@/content/available";
 import { processSteps, site, studioImages } from "@/content/site";
 import { featuredWorks, workBySlug } from "@/content/works";
@@ -163,15 +163,16 @@ export default function HomePage() {
 
       <Section>
         <EditorialGrid>
-          <div className="col-span-12 md:col-span-10">
-            <h2 className="display-heading">
-              Have something
-              <br />
-              <em>in mind?</em>
-            </h2>
-            <div className="mt-10 md:mt-14">
-              <InquiryForm />
-            </div>
+          <div className="col-span-12">
+            <InquirySection
+              heading={
+                <>
+                  Have something
+                  <br />
+                  <em>in mind?</em>
+                </>
+              }
+            />
           </div>
           <p className="col-span-12 mt-16 text-[length:var(--text-micro)] uppercase tracking-[0.16em] text-graphite">
             {site.locationLine} / Instagram {formatHandle(site.instagramHandle)}

@@ -30,7 +30,7 @@ export const inquirySchema = z.object({
     ),
 });
 
-export type InquiryInput = z.infer<typeof inquirySchema>;
+export type InquiryIntent = (typeof inquiryIntents)[number];
 
 export function parseInquiryForm(formData: FormData) {
   return inquirySchema.safeParse({

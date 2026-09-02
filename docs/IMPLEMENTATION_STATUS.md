@@ -11,7 +11,7 @@
 - Typed `TODO_CONTENT` fixtures
 - Public GitHub repo: https://github.com/nate-goodlead/zymosistattoo.com
 - Vercel production: https://zymosistattoo.vercel.app (GitHub repo connected for push-to-deploy)
-- Homepage inquiry form under the final CTA, with Zod validation
+- Shared centered inquiry form on Home and Book
 - Process section is type-only (studio process photos remain on About)
 
 ## Current

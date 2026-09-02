@@ -16,7 +16,12 @@ const intents = [
   { value: "consultation", label: "Not sure" },
 ] as const;
 
-export function InquiryForm() {
+type InquiryFormProps = {
+  defaultIntent?: (typeof intents)[number]["value"];
+  defaultIdea?: string;
+};
+
+export function InquiryForm({ defaultIntent, defaultIdea }: InquiryFormProps) {
   const [state, action, pending] = useActionState(submitInquiry, initialState);
 
   if (state.status === "success") {
@@ -68,7 +73,13 @@ export function InquiryForm() {
         <div className="inquiry-intents">
           {intents.map((intent) => (
             <label key={intent.value} className="inquiry-intent">
-              <input type="radio" name="intent" value={intent.value} required />
+              <input
+                type="radio"
+                name="intent"
+                value={intent.value}
+                required
+                defaultChecked={defaultIntent === intent.value}
+              />
               <span>{intent.label}</span>
             </label>
           ))}
@@ -84,6 +95,7 @@ export function InquiryForm() {
           required
           maxLength={4000}
           placeholder="Subject, mood, placement, meaning."
+          defaultValue={defaultIdea}
         />
         {errors?.idea ? <p className="inquiry-error">{errors.idea}</p> : null}
       </label>
