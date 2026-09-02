@@ -11,7 +11,8 @@
 - Typed `TODO_CONTENT` fixtures
 - Public GitHub repo: https://github.com/nate-goodlead/zymosistattoo.com
 - Vercel production: https://zymosistattoo.vercel.app (GitHub repo connected for push-to-deploy)
-- First batch of real portfolio photographs on Home, Work, and About
+- Homepage inquiry form under the final CTA, with Zod validation
+- Process section is type-only (studio process photos remain on About)
 
 ## Current
 

@@ -4,6 +4,7 @@ import { DisplayHeading } from "@/components/ui/DisplayHeading";
 import { EditorialLabel } from "@/components/ui/EditorialLabel";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { TextLink } from "@/components/ui/TextLink";
+import { InquiryForm } from "@/components/booking/InquiryForm";
 import { previewAvailableDesigns } from "@/content/available";
 import { processSteps, site, studioImages } from "@/content/site";
 import { featuredWorks, workBySlug } from "@/content/works";
@@ -135,15 +136,6 @@ export default function HomePage() {
               ) : null}
             </article>
           ))}
-          <div className="col-span-12 md:col-span-7 md:col-start-6">
-            <ImageFrame
-              alt={studioImages.machine.alt}
-              src={studioImages.machine.src}
-              width={studioImages.machine.width}
-              height={studioImages.machine.height}
-              sizes="(min-width: 768px) 55vw, 100vw"
-            />
-          </div>
         </EditorialGrid>
       </Section>
 
@@ -177,8 +169,8 @@ export default function HomePage() {
               <br />
               <em>in mind?</em>
             </h2>
-            <div className="mt-10">
-              <TextLink href="/book">Start a project</TextLink>
+            <div className="mt-10 md:mt-14">
+              <InquiryForm />
             </div>
           </div>
           <p className="col-span-12 mt-16 text-[length:var(--text-micro)] uppercase tracking-[0.16em] text-graphite">
