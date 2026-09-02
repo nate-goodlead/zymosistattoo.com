@@ -9,11 +9,13 @@
 - Accessible header + fullscreen menu (no GSAP/Lenis yet)
 - Public route shells: `/` `/work` `/available` `/about` `/book` `/contact` `/privacy`
 - Typed `TODO_CONTENT` fixtures
-- CI workflow (lint, typecheck, build)
+- Public GitHub repo: https://github.com/nate-goodlead/zymosistattoo.com
+- Vercel production: https://zymosistattoo.vercel.app (GitHub repo connected for push-to-deploy)
 
 ## Current
 
-- Phase 1 verification, GitHub remote, Vercel deploy-as-we-go
+- Phase 2 homepage art direction, once original images start arriving
+- GitHub Actions workflow is ready locally on branch `ci`; pushing it needs the GitHub `workflow` scope (`gh auth refresh -s workflow`)
 
 ## Blocked
 
