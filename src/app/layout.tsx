@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     default: `${site.displayName} — ${site.roleLine}`,
     template: `%s — ${site.displayName}`,
   },
-  description: `${site.roleLine} in ${site.locationLine}. Custom tattoos and available designs.`,
+  description: `${site.roleLine} at ${site.locationLine}. Custom tattoos and available designs.`,
   openGraph: {
     siteName: site.displayName,
     locale: "en_NL",

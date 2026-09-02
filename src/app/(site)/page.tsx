@@ -1,12 +1,14 @@
+import Image from "next/image";
+import { DesignGallery } from "@/components/available/DesignGallery";
+import { InquirySection } from "@/components/booking/InquirySection";
 import { EditorialGrid } from "@/components/layout/EditorialGrid";
 import { Section } from "@/components/layout/Section";
 import { DisplayHeading } from "@/components/ui/DisplayHeading";
 import { EditorialLabel } from "@/components/ui/EditorialLabel";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { TextLink } from "@/components/ui/TextLink";
-import { InquirySection } from "@/components/booking/InquirySection";
 import { previewAvailableDesigns } from "@/content/available";
-import { processSteps, site, studioImages } from "@/content/site";
+import { howWeDoSteps, site, studioImages } from "@/content/site";
 import { featuredWorks, workBySlug } from "@/content/works";
 import { formatHandle } from "@/lib/site";
 
@@ -20,42 +22,43 @@ const featuredSpans = [
 ];
 
 const heroWork = workBySlug("swallow-shoulder");
+const processPreview = howWeDoSteps.slice(0, -1);
+const processCloser = howWeDoSteps[howWeDoSteps.length - 1];
 
 export default function HomePage() {
   const works = featuredWorks(6);
-  const designs = previewAvailableDesigns(3);
+  const designs = previewAvailableDesigns();
 
   return (
     <>
-      <Section className="pt-[clamp(4rem,12vh,8rem)]">
-        <EditorialGrid>
-          <div className="col-span-12 lg:col-span-8">
-            <EditorialLabel>
-              {site.roleLine} / {site.locationLine}
-            </EditorialLabel>
-            <DisplayHeading className="mt-6">
-              Zymosis
-              <br />
-              <em>Tattoo</em>
-            </DisplayHeading>
+      <section className="hero">
+        {heroWork?.imageSrc ? (
+          <div className="hero-media">
+            <Image
+              src={heroWork.imageSrc}
+              alt={heroWork.imageAlt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="hero-scrim" />
           </div>
-          <div className="col-span-12 flex flex-col justify-end gap-8 lg:col-span-4 lg:items-end">
+        ) : null}
+        <div className="hero-copy">
+          <EditorialLabel>
+            {site.roleLine} / {site.locationLine}
+          </EditorialLabel>
+          <DisplayHeading className="mt-6">
+            Zymosis
+            <br />
+            <em>Tattoo</em>
+          </DisplayHeading>
+          <div className="mt-10">
             <TextLink href="/book">Start a project</TextLink>
-            <div className="w-full max-w-sm lg:max-w-none">
-              {heroWork ? (
-                <ImageFrame
-                  alt={heroWork.imageAlt}
-                  src={heroWork.imageSrc}
-                  width={heroWork.width}
-                  height={heroWork.height}
-                  priority
-                  sizes="(min-width: 1024px) 33vw, 90vw"
-                />
-              ) : null}
-            </div>
           </div>
-        </EditorialGrid>
-      </Section>
+        </div>
+      </section>
 
       <Section invert compact>
         <EditorialGrid>
@@ -101,41 +104,37 @@ export default function HomePage() {
             </div>
             <TextLink href="/available">View available work</TextLink>
           </div>
-          {designs.map((design, index) => (
-            <article
-              key={design.id}
-              className="col-span-12 md:col-span-4"
-            >
-              <ImageFrame
-                alt={design.imageAlt}
-                src={design.imageSrc}
-                width={4}
-                height={5}
-                label={String(index + 1).padStart(2, "0")}
-                caption={`${design.status} / ${design.title ?? "Untitled"}`}
-              />
-            </article>
-          ))}
+          <div className="col-span-12">
+            <DesignGallery designs={designs} dense />
+          </div>
         </EditorialGrid>
       </Section>
 
       <Section>
         <EditorialGrid>
-          <div className="col-span-12">
-            <EditorialLabel index="03">Process</EditorialLabel>
+          <div className="col-span-12 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <EditorialLabel index="03">Process</EditorialLabel>
+              <h2 className="section-heading mt-4">How we do</h2>
+            </div>
+            <TextLink href="/how-we-do">Read the process</TextLink>
           </div>
-          {processSteps.map((step) => (
-            <article key={step.index} className="col-span-12 md:col-span-4">
+          {processPreview.map((step) => (
+            <article key={step.index} className="col-span-12 md:col-span-6 lg:col-span-3">
               <p className="editorial-label">{step.index}</p>
               <h2 className="mt-4 text-[length:var(--text-lead)] uppercase tracking-[-0.04em]">
                 {step.title}
               </h2>
               <p className="mt-4 max-w-[28ch] text-paper/80">{step.copy}</p>
-              {step.contentFlag ? (
-                <p className="todo-flag mt-3">{step.contentFlag}</p>
-              ) : null}
             </article>
           ))}
+          {processCloser ? (
+            <article className="col-span-12">
+              <p className="statement-heading mt-4 text-[length:var(--text-lead)]">
+                {processCloser.title}.
+              </p>
+            </article>
+          ) : null}
         </EditorialGrid>
       </Section>
 
@@ -165,11 +164,12 @@ export default function HomePage() {
         <EditorialGrid>
           <div className="col-span-12">
             <InquirySection
+              label="Inquiry"
               heading={
                 <>
-                  Have something
+                  Start a
                   <br />
-                  <em>in mind?</em>
+                  <em>project</em>
                 </>
               }
             />

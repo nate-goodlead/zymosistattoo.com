@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { navItems, site } from "@/content/site";
+import { headerNavItems, navItems, site } from "@/content/site";
 import { formatHandle } from "@/lib/site";
 
 const FOCUSABLE =
@@ -97,7 +97,7 @@ export function SiteHeader() {
           <span>sis</span>
         </Link>
         <nav className="header-nav" aria-label="Primary">
-          {navItems.map((item) => (
+          {headerNavItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}

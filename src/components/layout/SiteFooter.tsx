@@ -16,6 +16,10 @@ export function SiteFooter() {
         </a>
       </p>
       <p className="col-span-6 md:col-span-3">
+        <Link href="/how-we-do">How we do</Link>
+        <br />
+        <Link href="/aftercare">Aftercare</Link>
+        <br />
         <Link href="/contact">Contact</Link>
         <br />
         <Link href="/privacy">Privacy</Link>

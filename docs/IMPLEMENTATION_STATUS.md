@@ -7,16 +7,17 @@
 - Project rules and PRD copied into the repo
 - Design tokens, Inter Tight + Instrument Serif, editorial layout primitives
 - Accessible header + fullscreen menu (no GSAP/Lenis yet)
-- Public route shells: `/` `/work` `/available` `/about` `/book` `/contact` `/privacy`
+- Public routes: `/` `/work` `/available` `/how-we-do` `/aftercare` `/about` `/book` `/contact` `/privacy`
 - Typed `TODO_CONTENT` fixtures
 - Public GitHub repo: https://github.com/nate-goodlead/zymosistattoo.com
 - Vercel production: https://zymosistattoo.vercel.app (GitHub repo connected for push-to-deploy)
-- Shared centered inquiry form on Home and Book
-- Process section is type-only (studio process photos remain on About)
+- Start-a-project inquiry: idea, size in cm, place, inspiration dropzone, notes, “Not sure yet”
+- Available work as thumbnail gallery with large-image overlay, story, and process where it exists
+- Location line: Canvas Tattoo, Haarlem
+- Homepage hero: swallow photograph as full-bleed background behind the title
 
 ## Current
 
-- Homepage art direction with the supplied photos
 - GitHub Actions workflow is ready locally on branch `ci`; pushing it needs the GitHub `workflow` scope (`gh auth refresh -s workflow`)
 
 ## Blocked
@@ -26,16 +27,17 @@
 - Budget ranges and response-time wording
 - Wordmark/logo beyond the ZYMO/SIS type lockup
 - Supabase / Resend / PostHog credentials
+- Inspiration images are validated, not stored (no private bucket yet)
 
 ## Content TODOs
 
 - More portfolio photographs toward 12–30, with year and publish permission confirmed
-- 3–10 available / flash designs with size/placement/status
+- Dedicated unused flash (current Available mix includes already-tattooed pieces as references)
 - Legal privacy notice
 - ManyChat UTM conventions to confirm with the operator
 
 ## Technical debt
 
-- Booking route is an editorial outline, not the multi-step form
+- Inquiry still hands off to Instagram until an inbox is connected
 - No motion system yet (intentional; Phase 3)
 - No persistence adapter yet (Phase 6)

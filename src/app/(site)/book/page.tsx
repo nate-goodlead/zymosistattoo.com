@@ -37,9 +37,9 @@ export default async function BookPage({
             headingAs="h1"
             heading={
               <>
-                Have something
+                Start a
                 <br />
-                <em>in mind?</em>
+                <em>project</em>
               </>
             }
             defaultIntent={defaultIntent}

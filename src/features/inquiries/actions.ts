@@ -1,7 +1,10 @@
 "use server";
 
 import { headers } from "next/headers";
-import { parseInquiryForm } from "@/lib/validation/inquiry";
+import {
+  parseInquiryForm,
+  parseInspirationFiles,
+} from "@/lib/validation/inquiry";
 
 export type InquiryFormState =
   | { status: "idle" }
@@ -10,10 +13,15 @@ export type InquiryFormState =
       status: "success";
       summary: {
         intent: string;
+        notSure: boolean;
         name: string;
         email: string;
         instagram: string;
         idea: string;
+        sizeCm: string;
+        placement: string;
+        notes: string;
+        inspiration: string[];
       };
     };
 
@@ -78,14 +86,28 @@ export async function submitInquiry(
     };
   }
 
+  const inspiration = parseInspirationFiles(formData, parsed.data.notSure);
+  if (!inspiration.ok) {
+    return {
+      status: "error",
+      message: "Check the highlighted fields.",
+      fieldErrors: { inspiration: inspiration.message },
+    };
+  }
+
   return {
     status: "success",
     summary: {
       intent: parsed.data.intent,
+      notSure: parsed.data.notSure,
       name: parsed.data.name,
       email: parsed.data.email,
       instagram: parsed.data.instagram,
       idea: parsed.data.idea,
+      sizeCm: parsed.data.sizeCm,
+      placement: parsed.data.placement,
+      notes: parsed.data.notes,
+      inspiration: inspiration.files.map((file) => file.name),
     },
   };
 }

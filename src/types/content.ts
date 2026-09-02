@@ -11,6 +11,13 @@ export type WorkCategory =
 
 export type WorkStatus = "fresh" | "healed" | "unknown";
 
+export type ImageAsset = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type PortfolioWork = {
   id: string;
   slug: string;
@@ -41,11 +48,15 @@ export type AvailableDesign = {
   title: string | null;
   imageSrc: string | null;
   imageAlt: string;
+  width: number;
+  height: number;
   status: AvailableDesignStatus;
   sizeGuidance: string | null;
   placementGuidance: string | null;
   priceGuidance: string | null;
   notes: string | null;
+  story: string | null;
+  processImages: ImageAsset[];
   sortOrder: number;
   published: boolean;
   contentFlag?: ContentFlag;
@@ -61,6 +72,7 @@ export type ProcessStep = {
 export type SiteContent = {
   displayName: string;
   artistFirstName: string;
+  studioName: string;
   locationLine: string;
   roleLine: string;
   instagramHandle: string;

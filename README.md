@@ -2,7 +2,7 @@
 
 Independent tattoo-artist portfolio and inquiry site for [zymosistattoo.com](https://zymosistattoo.com).
 
-Lisa / Zymosis Tattoo — Haarlem, Netherlands. Instagram [@zymosistattoo](https://www.instagram.com/zymosistattoo/).
+Lisa / Zymosis Tattoo — Canvas Tattoo, Haarlem. Instagram [@zymosistattoo](https://www.instagram.com/zymosistattoo/).
 
 ## Stack
 

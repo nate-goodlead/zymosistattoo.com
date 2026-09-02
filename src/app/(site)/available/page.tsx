@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
+import { DesignGallery } from "@/components/available/DesignGallery";
 import { EditorialGrid } from "@/components/layout/EditorialGrid";
 import { Section } from "@/components/layout/Section";
 import { DisplayHeading } from "@/components/ui/DisplayHeading";
 import { EditorialLabel } from "@/components/ui/EditorialLabel";
-import { ImageFrame } from "@/components/ui/ImageFrame";
 import { TextLink } from "@/components/ui/TextLink";
 import { publishedAvailableDesigns } from "@/content/available";
 
 export const metadata: Metadata = {
   title: "Available work",
-  description: "Pre-designed tattoos available from Zymosis Tattoo, subject to artist confirmation.",
+  description: "Designs from Zymosis Tattoo. Click a picture for a closer look — some include process and a short note.",
 };
 
 export default function AvailablePage() {
@@ -25,9 +25,10 @@ export default function AvailablePage() {
             <br />
             <em>work</em>
           </DisplayHeading>
-          <p className="mt-8 max-w-[36ch] text-paper/80">
-            Pre-designed pieces available for tattooing, subject to artist
-            confirmation. Availability can change.
+          <p className="mt-8 max-w-[40ch] text-paper/80">
+            Smaller pictures. Click one to see it larger — some include process
+            and a short note. Availability can change. Pieces already tattooed
+            can still be a starting point.
           </p>
         </div>
         {designs.length === 0 ? (
@@ -38,23 +39,9 @@ export default function AvailablePage() {
             </div>
           </div>
         ) : (
-          designs.map((design, index) => (
-            <article key={design.id} className="col-span-12 md:col-span-4">
-              <ImageFrame
-                alt={design.imageAlt}
-                src={design.imageSrc}
-                width={4}
-                height={5}
-                label={String(index + 1).padStart(2, "0")}
-                caption={`${design.status} / ${design.sizeGuidance ?? "size TBC"}`}
-              />
-              <div className="mt-5">
-                <TextLink href={`/book?intent=available&design=${design.slug}`}>
-                  Inquire about this
-                </TextLink>
-              </div>
-            </article>
-          ))
+          <div className="col-span-12">
+            <DesignGallery designs={designs} />
+          </div>
         )}
       </EditorialGrid>
     </Section>
